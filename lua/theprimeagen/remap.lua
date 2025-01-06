@@ -1,4 +1,3 @@
-
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -83,3 +82,15 @@ vim.keymap.set("v", "gcc", function()
     require("Comment.api").toggle.linewise(vim.fn.visualmode())
 end, { desc = "Toggle comment on selected line" })
 
+vim.keymap.set("n", "<leader>qq", vim.cmd.quit, { desc = "Fast quit"})
+
+-- Iron keymaps
+vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>')
+vim.keymap.set('n', '<leader>rr', '<cmd>IronRestart<cr>')
+vim.keymap.set('n', '<leader>rf', '<cmd>IronFocus<cr>')
+vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>')
+
+-- Keymaps to run code with Neoterm
+vim.keymap.set("n", "<leader>rp", ":Tclear<CR>:w<CR>:T python3 %<CR>", { desc = "Run Python file in Neoterm" })
+
+vim.keymap.set("n", "<leader>ht", ":Ttoggle<CR>", { desc = "Toggle terminal" })
