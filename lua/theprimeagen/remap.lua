@@ -73,16 +73,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
--- Remap comment toggling
-vim.keymap.set("n", "gcc", function()
-    require("Comment.api").toggle.linewise.current()
-end, { desc = "Toggle comment on current line" })
-
-vim.keymap.set("v", "gcc", function()
-    require("Comment.api").toggle.linewise(vim.fn.visualmode())
-end, { desc = "Toggle comment on selected line" })
-
-vim.keymap.set("n", "<leader>qq", vim.cmd.quit, { desc = "Fast quit"})
+vim.keymap.set("n", "<leader>qq", function() vim.cmd("q!") end, { desc = "Fast quit"})
 
 -- Iron keymaps
 vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>')

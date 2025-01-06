@@ -26,6 +26,7 @@ return {
         local dap = require("dap")
         local python_path = get_python_path()
 
+        -- DAP Python settings
         dap.adapters.python = {
             type = "executable",
             command = python_path,
@@ -38,6 +39,37 @@ return {
                 request = "launch",
                 program = "${file}",
                 pythonPath = python_path,
+            },
+        }
+
+        -- DAP Golang settings
+        dap.adapters.go = {
+            type = "server",
+            port = "${port}",
+            executable = {
+                command = "dlv",
+                args = { "dap", "-l", "127.0.0.1:${port}" },
+            },
+        }
+
+        dap.configurations.go = {
+            {
+                type = "go",
+                name = "Debug",
+                request = "launch",
+                program = "${file}",
+            },
+            {
+                type = "go",
+                name = "Debug Package",
+                request = "launch",
+                program = "./",
+            },
+            {
+                type = "go",
+                name = "Attach",
+                request = "attach",
+                processId = require("dap.utils").pick_process,
             },
         }
 
@@ -83,6 +115,7 @@ return {
         vim.keymap.set("n", "<leader>di", function() dap.step_into() end, { desc = "Step Into" })
         vim.keymap.set("n", "<leader>do", function() dap.step_out() end, { desc = "Step Out" })
         vim.keymap.set("n", "<leader>db", function() dap.toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+        vim.keymap.set("n", "<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { desc = "Set Conditional Breakpoint" })
         vim.keymap.set("n", "<leader>dr", function() dap.rpl.open() end, { desc = "Open REPL" })
         vim.keymap.set("n", "<leader>du", function() dapui.toggle() end, { desc = "Toggle DAP UI" })
         vim.keymap.set("n", "<leader>dkb", ":Telescope dap commands<CR>", { desc = "DAP Commands" })
