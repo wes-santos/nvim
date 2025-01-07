@@ -13,6 +13,18 @@ local function get_python_path()
     end
 end
 
+local is_open = false
+local function toggle_repl()
+    local dapui = require("dapui")
+    if not is_open then
+        dapui.float_element("repl", {position = "center"})
+        is_open = true
+    else
+        is_open = false
+        vim.cmd("q")
+    end
+end
+
 return {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -23,14 +35,20 @@ return {
         "nvim-telescope/telescope-dap.nvim",
     },
     config = function()
-        local dap = require("dap")
         local python_path = get_python_path()
 
         -- DAP Python settings
+        local dap = require("dap")
         dap.adapters.python = {
             type = "executable",
-            command = python_path,
-            args = { "-m",  "debugpy.adapter" },
+            command = (function()
+                local handle = io.popen(python_path .. " -m pip show debugpy 2>/dev/null")
+                if handle and not handle:read("*a"):match("Name: debugpy") then
+                    vim.fn.system({ python_path, "-m", "pip", "install", "debugpy" })
+                end
+                return python_path
+            end)(),
+            args = { "-m", "debugpy.adapter" },
         }
 
         dap.configurations.python = {
@@ -79,22 +97,50 @@ return {
             layouts = {
                 {
                     elements = {
-                        { id = "scopes", size = 0.25 },
-                        "breakpoints",
-                        "stacks",
-                        "watches",
+                        { id = "scopes", size = 0.33 },
+                        { id = "breakpoints", size = 0.17 },
+                        { id = "stacks", size = 0.25 },
+                        { id = "watches", size = 0.25 },
                     },
-                    size = 40,
-                    position = "left",
+                    size = 0.33,
+                    position = "right",
                 },
                 {
                     elements = {
-                        "repl",
-                        "console",
+                        { id = "repl", size = 0.45 },
+                        { id = "console", size = 0.55 },
                     },
-                    size = 0.25,
+                    size = 0.27,
                     position = "bottom",
                 },
+            },
+            controls = {
+                enabled = true,
+                -- Display controls in this element
+                element = "repl",
+                icons = {
+                    pause = "",
+                    play = "",
+                    step_into = "",
+                    step_over = "",
+                    step_out = "",
+                    step_back = "",
+                    run_last = "",
+                    terminate = "",
+                },
+            },
+            floating = {
+                max_height = 0.9,
+                max_width = 0.5, -- Floats will be treated as percentage of your screen.
+                border = "rounded",
+                mappings = {
+                    close = { "q", "<Esc>" },
+                },
+            },
+            windows = { indent = 1 },
+            render = {
+                max_type_length = nil, -- Can be integer or nil.
+                max_value_lines = 100, -- Can be integer or nil.
             },
         })
 
@@ -116,7 +162,8 @@ return {
         vim.keymap.set("n", "<leader>do", function() dap.step_out() end, { desc = "Step Out" })
         vim.keymap.set("n", "<leader>db", function() dap.toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
         vim.keymap.set("n", "<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { desc = "Set Conditional Breakpoint" })
-        vim.keymap.set("n", "<leader>dr", function() dap.rpl.open() end, { desc = "Open REPL" })
+        vim.keymap.set("n", "<leader>dt", function() dap.terminate() end, { desc = "Terminate DAP Session" })
+        vim.keymap.set("n", "<leader>dr", toggle_repl, { desc = "Toggle DAP REPL" })
         vim.keymap.set("n", "<leader>du", function() dapui.toggle() end, { desc = "Toggle DAP UI" })
         vim.keymap.set("n", "<leader>dkb", ":Telescope dap commands<CR>", { desc = "DAP Commands" })
     end,

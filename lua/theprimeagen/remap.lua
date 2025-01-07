@@ -73,7 +73,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>qq", function() vim.cmd("q!") end, { desc = "Fast quit"})
+vim.keymap.set("n", "<leader>qq", function() vim.cmd("qa!") end, { desc = "Fast quit"})
 
 -- Iron keymaps
 vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>')

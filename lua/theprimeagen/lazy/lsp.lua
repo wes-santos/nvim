@@ -38,8 +38,6 @@ return {
                 "html",
                 "jsonls",
                 "pyright",
-                "sqls",
-                -- "terraformls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
