@@ -13,18 +13,6 @@ local function get_python_path()
     end
 end
 
-local is_open = false
-local function toggle_repl()
-    local dapui = require("dapui")
-    if not is_open then
-        dapui.float_element("repl", {position = "center"})
-        is_open = true
-    else
-        is_open = false
-        vim.cmd("q")
-    end
-end
-
 return {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -163,7 +151,6 @@ return {
         vim.keymap.set("n", "<leader>db", function() dap.toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
         vim.keymap.set("n", "<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { desc = "Set Conditional Breakpoint" })
         vim.keymap.set("n", "<leader>dt", function() dap.terminate() end, { desc = "Terminate DAP Session" })
-        vim.keymap.set("n", "<leader>dr", toggle_repl, { desc = "Toggle DAP REPL" })
         vim.keymap.set("n", "<leader>du", function() dapui.toggle() end, { desc = "Toggle DAP UI" })
         vim.keymap.set("n", "<leader>dkb", ":Telescope dap commands<CR>", { desc = "DAP Commands" })
     end,

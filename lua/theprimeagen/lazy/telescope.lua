@@ -25,6 +25,12 @@ return {
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end)
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+
+        vim.keymap.set('n', 'gd', builtin.lsp_definitions, { silent = true, noremap = true })
+        vim.keymap.set('n', 'gr', builtin.lsp_references, { silent = true, noremap = true })
+        vim.keymap.set('n', 'gi', builtin.lsp_implementations, { silent = true, noremap = true })
+        vim.keymap.set('n', '<leader>fw', builtin.grep_string, { silent = true, noremap = true })
+        vim.keymap.set('n', '<leader>fs', builtin.live_grep, { silent = true, noremap = true })
     end
 }
 
