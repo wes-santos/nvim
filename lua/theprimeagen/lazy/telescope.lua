@@ -31,6 +31,7 @@ return {
         vim.keymap.set('n', 'gi', builtin.lsp_implementations, { silent = true, noremap = true })
         vim.keymap.set('n', '<leader>fw', builtin.grep_string, { silent = true, noremap = true })
         vim.keymap.set('n', '<leader>fs', builtin.live_grep, { silent = true, noremap = true })
+        vim.keymap.set('n', '<leader>km', function() vim.cmd("Telescope keymaps") end, { silent = true, noremap = true})
     end
 }
 
