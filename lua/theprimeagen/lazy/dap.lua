@@ -136,6 +136,14 @@ return {
             dapui.open()
         end
 
+        dap.listeners.before.event_terminated["notify_session_end"] = function()
+            vim.notify("DAP session terminated", vim.log.levels.INFO)
+        end
+
+        dap.listeners.before.event_exited["notify_session_exit"] = function()
+            vim.notify("DAP session exited", vim.log.levels.INFO)
+        end
+
         -- Enable virtual text for debugging
         require("nvim-dap-virtual-text").setup()
 
