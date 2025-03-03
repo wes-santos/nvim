@@ -1,5 +1,5 @@
 return {
-    "kassio/neoterm",
+    dir = "~/.config/nvim/plugins/neoterm",
     config = function()
         vim.g.neoterm_default_mod = "vertical"
         vim.g.neoterm_autoinsert = 0

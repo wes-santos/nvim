@@ -1,5 +1,5 @@
 return {
-    "github/copilot.vim",
+    dir = "~/.config/nvim/plugins/copilot.vim",
     config = function()
         vim.g.copilot_no_tab_map = true
         vim.keymap.set("i", "<C-J>", function()

@@ -1,6 +1,6 @@
 return {
-    "laytan/cloak.nvim",
-    config = function() 
+    dir = "~/.config/nvim/plugins/cloak.nvim",
+    config = function()
         require("cloak").setup({
             enabled = true,
             cloak_character = "*",

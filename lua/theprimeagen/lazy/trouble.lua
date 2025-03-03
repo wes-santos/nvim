@@ -1,6 +1,6 @@
 return {
     {
-        "folke/trouble.nvim",
+        dir = "~/.config/nvim/plugins/trouble.nvim",
         config = function()
             require("trouble").setup({
                 icons = false,

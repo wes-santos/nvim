@@ -1,6 +1,6 @@
 return {
-    "lewis6991/gitsigns.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dir = "~/.config/nvim/plugins/gitsigns.nvim",
+    dependencies = { dir = "~/.config/nvim/plugins/plenary.nvim" },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         signs = {

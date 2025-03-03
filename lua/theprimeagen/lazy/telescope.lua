@@ -1,10 +1,10 @@
 return {
-    "nvim-telescope/telescope.nvim",
+    dir = "~/.config/nvim/plugins/telescope.nvim",
 
     tag = "0.1.5",
 
     dependencies = {
-        "nvim-lua/plenary.nvim"
+        dir = "~/.config/nvim/plugins/plenary.nvim"
     },
 
     config = function()

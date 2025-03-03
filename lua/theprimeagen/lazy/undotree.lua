@@ -1,8 +1,8 @@
 
 return {
-    "mbbill/undotree",
+    dir = "~/.config/nvim/plugins/undotree",
 
-    config = function() 
+    config = function()
         vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
     end
 }

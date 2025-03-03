@@ -14,13 +14,13 @@ local function get_python_path()
 end
 
 return {
-    "mfussenegger/nvim-dap",
+    dir = "~/.config/nvim/plugins/dap/nvim-dap",
     dependencies = {
-        "nvim-neotest/nvim-nio",
-        "mfussenegger/nvim-dap-python",
-        "rcarriga/nvim-dap-ui",
-        "theHamsta/nvim-dap-virtual-text",
-        "nvim-telescope/telescope-dap.nvim",
+        { dir = "~/.config/nvim/plugins/dap/nvim-nio" },
+        { dir = "~/.config/nvim/plugins/dap/nvim-dap-python" },
+        { dir = "~/.config/nvim/plugins/dap/nvim-dap-ui" },
+        { dir = "~/.config/nvim/plugins/dap/nvim-dap-virtual-text" },
+        { dir = "~/.config/nvim/plugins/dap/telescope-dap.nvim" },
     },
     config = function()
         local python_path = get_python_path()

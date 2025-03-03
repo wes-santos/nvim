@@ -1,5 +1,5 @@
 return {
-    "tpope/vim-fugitive",
+    dir = "~/.config/nvim/plugins/vim-fugitive",
     config = function()
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 

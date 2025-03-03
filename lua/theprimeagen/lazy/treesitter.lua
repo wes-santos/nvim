@@ -1,5 +1,5 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
+    dir = "~/.config/nvim/plugins/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
         require("nvim-treesitter.configs").setup({

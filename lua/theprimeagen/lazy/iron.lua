@@ -1,5 +1,5 @@
 return {
-    "hkupty/iron.nvim",
+    dir = "~/.config/nvim/plugins/iron.nvim",
     config = function()
         require("iron.core").setup({
             config = {

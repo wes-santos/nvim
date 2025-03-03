@@ -9,11 +9,11 @@ end
 return {
 
     {
-        "erikbackman/brightburn.vim",
+        dir = "~/.config/nvim/plugins/colors/brightburn.vim",
     },
 
     {
-        "folke/tokyonight.nvim",
+        dir = "~/.config/nvim/plugins/colors/tokyonight.nvim",
         lazy = false,
         opts = {},
         config = function()
@@ -21,7 +21,7 @@ return {
         end
     },
     {
-        "ellisonleao/gruvbox.nvim",
+        dir = "~/.config/nvim/plugins/colors/gruvbox.nvim",
         name = "gruvbox",
         config = function()
             require("gruvbox").setup({
@@ -51,7 +51,7 @@ return {
         end,
     },
     {
-        "folke/tokyonight.nvim",
+        dir = "~/.config/nvim/plugins/colors/tokyonight.nvim",
         config = function()
             require("tokyonight").setup({
                 -- your configuration comes here
@@ -73,7 +73,7 @@ return {
     },
 
     {
-        "rose-pine/neovim",
+        dir = "~/.config/nvim/plugins/colors/neovim",
         name = "rose-pine",
         config = function()
             require('rose-pine').setup({
