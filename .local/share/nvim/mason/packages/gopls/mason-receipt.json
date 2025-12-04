@@ -1,0 +1,1 @@
+{"name":"gopls","secondary_sources":[],"schema_version":"1.1","primary_source":{"id":"pkg:golang/golang.org/x/tools/gopls@v0.20.0","type":"registry+v1"},"metrics":{"completion_time":1753913195275,"start_time":1753913182498},"links":{"share":{},"opt":{},"bin":{"gopls":"gopls"}}}
